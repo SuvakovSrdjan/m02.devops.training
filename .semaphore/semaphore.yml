@@ -34,7 +34,7 @@ blocks:
         - name: 2 unit testing
           commands:
             - cd 1-tdd && python -m pytest test_factorial.py -v
-            - cd 2-unit-testing && python -m pytest test_math_sum.py -v
+            - cd ../2-unit-testing && python -m pytest test_math_sum.py -v
   - name: Integration tests
     dependencies:
       - Unit Tests
