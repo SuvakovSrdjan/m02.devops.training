@@ -52,7 +52,7 @@ blocks:
           commands:
             - cd 4-e2e && nohup python app.py &
             - sleep 3
-            - cd 4-e2e python -m pytest test_e2e.py -v
+            - cd 4-e2e && python -m pytest test_e2e.py -v
   - name: Test Reports
     dependencies:
       - End-to-end tests
