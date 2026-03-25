@@ -13,12 +13,11 @@ auto_cancel:
   queued:
     when: branch = 'main'
 global_job_config:
-  epilogue:
-    always:
-      commands:
-        - sem-version 3.12
-        - checkout
-        - mkdir -p pip_cache
+  prologue:
+    commands:
+      - sem-version 3.12
+      - checkout
+      - mkdir -p pip_cache
 blocks:
   - name: Install dependencies
     dependencies: []
