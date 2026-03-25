@@ -37,7 +37,7 @@ blocks:
             - cd ../2-unit-testing && python -m pytest test_math_sum.py -v
   - name: Integration tests
     dependencies:
-      - Unit Tests
+      - Install dependencies
     task:
       jobs:
         - name: 3-integration testing
@@ -45,19 +45,19 @@ blocks:
             - cd 3-integration-testing && python -m pytest test_integration.py -v
   - name: End-to-end tests
     dependencies:
-      - Integration tests
+      - Install dependencies
     task:
       jobs:
         - name: End-to-End tests
           commands:
-            - cd 4-e2e && venv venv && source venv/bin/activate
+            - cd 4-e2e && python -m venv venv && source venv/bin/activate
             - cd 4-e2e && pip install -r requirements.txt
             - cd 4-e2e && nohup python app.py &
             - sleep 3
             - cd 4-e2e && python -m pytest test_e2e.py -v
   - name: Test Reports
     dependencies:
-      - End-to-end tests
+      - Install dependencies
     task:
       jobs:
         - name: Reports
