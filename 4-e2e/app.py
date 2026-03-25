@@ -5,33 +5,41 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    raise NotImplementedError("Implement home endpoint using TDD")
-
+    return "Welcome to the Flask API!"
 
 @app.route("/health")
 def health():
-    raise NotImplementedError("Implement health endpoint using TDD")
+    return jsonify({"status": "ok"})
 
 
 @app.route("/add", methods=["POST"])
 def add():
-    raise NotImplementedError("Implement add endpoint using TDD")
+    data = request.get_json()
+    result = data["a"] + data["b"]
+    return jsonify({"result": result})
 
 
 @app.route("/subtract", methods=["POST"])
 def subtract():
-    raise NotImplementedError("Implement subtract endpoint using TDD")
+    data = request.get_json()
+    result = data["a"] - data["b"]
+    return jsonify({"result": result})
 
 
 @app.route("/multiply", methods=["POST"])
 def multiply():
-    raise NotImplementedError("Implement multiply endpoint using TDD")
+    data = request.get_json()
+    result = data["a"] * data["b"]
+    return jsonify({"result": result})
 
 
 @app.route("/divide", methods=["POST"])
 def divide():
-    raise NotImplementedError("Implement divide endpoint using TDD")
-
+    data = request.get_json()
+    if data["b"] == 0:
+        return jsonify({"error": "Division by zero is not allowed"}), 400
+    result = data["a"] / data["b"]
+    return jsonify({"result": result})
 
 if __name__ == "__main__":
     app.run(debug=True)

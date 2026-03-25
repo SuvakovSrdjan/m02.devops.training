@@ -1,4 +1,13 @@
 # define your solution
 def factorial(n):
-    pass
+    if not isinstance(n, int):
+        raise TypeError("n must be an integer")
+    if n < 0:
+        raise ValueError("n must be >= 0")
+
+    result = 1
+    if n == 0 or n == 1:
+        return 1
+    
+    return n * factorial(n - 1)
 

@@ -1,18 +1,28 @@
+import datastore
 def process_and_store(key, raw_value):
-    raise NotImplementedError("Implement process_and_store using TDD")
-
+    stored_value = raw_value.strip().upper()
+    datastore.store_value(key, stored_value)
+    return stored_value
 
 def retrieve_processed(key):
-    raise NotImplementedError("Implement retrieve_processed using TDD")
+    stored_value = datastore.get_value(key)
+    return stored_value.lower() if stored_value else None
 
 
 def update_value(key, raw_value):
-    raise NotImplementedError("Implement update_value using TDD")
-
+    if datastore.get_value(key) is None:
+        raise KeyError(f"Key '{key}' does not exist.")
+    stored_value = raw_value.strip().upper()
+    datastore.store_value(key, stored_value)
+    return stored_value
 
 def delete_value(key):
-    raise NotImplementedError("Implement delete_value using TDD")
+    if datastore.get_value(key) is None:
+        return False
+    else:
+        datastore.delete_value(key)
+        return True
 
 
 def list_all_keys():
-    raise NotImplementedError("Implement list_all_keys using TDD")
+    return datastore.list_keys()
